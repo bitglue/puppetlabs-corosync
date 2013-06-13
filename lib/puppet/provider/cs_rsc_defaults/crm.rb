@@ -9,7 +9,6 @@ Puppet::Type.type(:cs_rsc_defaults).provide(:crm, :parent => Puppet::Provider::C
   # Path to the crm binary for interacting with the cluster configuration.
   commands :crm           => 'crm'
   commands :cibadmin      => 'cibadmin'
-  commands :crm_attribute => 'crm_attribute'
 
   def self.instances
 

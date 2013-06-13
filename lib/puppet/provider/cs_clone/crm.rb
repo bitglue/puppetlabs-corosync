@@ -2,14 +2,10 @@ require 'pathname'
 require Pathname.new(__FILE__).dirname.dirname.expand_path + 'corosync'
 
 Puppet::Type.type(:cs_clone).provide(:crm, :parent => Puppet::Provider::Corosync) do
-  desc 'Specific provider for a rather specific type since I currently have no plan to
-        abstract corosync/pacemaker vs. keepalived. This provider will check the state
-        of current primitive start orders on the system; add, delete, or adjust various
-        aspects.'
+  desc 'This provider will check the state of current clones on the system.'
 
   # Path to the crm binary for interacting with the cluster configuration.
   commands :crm => 'crm'
-  commands :crm_attribute => 'crm_attribute'
 
   def self.instances
 
@@ -77,7 +73,7 @@ Puppet::Type.type(:cs_clone).provide(:crm, :parent => Puppet::Provider::Corosync
   def destroy
     debug('Stopping clone before removing it')
     crm('resource', 'stop', @resource[:name])
-    debug('Revmoving order directive')
+    debug('Removing clone')
     crm('configure', 'delete', @resource[:name])
     @property_hash.clear
   end
