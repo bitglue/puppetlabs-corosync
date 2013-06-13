@@ -52,7 +52,7 @@ Puppet::Type.type(:cs_clone).provide(:crm, :parent => Puppet::Provider::Corosync
         :name       => clone.first[0],
         :ensure     => :present,
         :primitive  => clone.first[1][:primitive],
-	:metadata   => clone.first[1][:metadata],
+        :metadata   => clone.first[1][:metadata],
         :provider   => self.name
       }
       instances << new(clone_instance)

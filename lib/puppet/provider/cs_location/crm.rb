@@ -29,7 +29,7 @@ Puppet::Type.type(:cs_location).provide(:crm, :parent => Puppet::Provider::Coros
 
       if ! e.elements['rule'].nil?
          e.elements.each("rule") do |r|
-	 rule = { 'score' => r.attributes['score'], 'operation' => r.attributes['boolean-op'], 'expressions' => [] }
+         rule = { 'score' => r.attributes['score'], 'operation' => r.attributes['boolean-op'], 'expressions' => [] }
             r.elements.each("expression") do |x|
                if x.attributes['value']
                   rule['expressions'] << "#{x.attributes['attribute']} #{x.attributes['operation']} #{x.attributes['value']}"
